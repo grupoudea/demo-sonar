@@ -1,5 +1,6 @@
 package com.example.demosonar.controllers;
 
+import com.example.demosonar.dtos.DemoDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,18 @@ import java.util.stream.IntStream;
 public class DemoController {
 
     private final Logger log = LoggerFactory.getLogger(DemoController.class);
+
+    @GetMapping("/get-demo")
+    public ResponseEntity<DemoDto> getDemo(){
+        var demo = new DemoDto();
+        demo.age = 1;
+        demo.setName("DemoName");
+
+        System.out.println("Demo: "+ demo);
+
+        return ResponseEntity.ok(demo);
+
+    }
 
     @GetMapping("/list-numbers-until/{maxNumber}")
     public ResponseEntity<List<String>> getListNumber(@PathVariable Integer maxNumber) {
