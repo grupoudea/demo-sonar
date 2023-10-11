@@ -50,6 +50,34 @@ public class DemoController {
 
     }
 
+
+    public ResponseEntity<DemoDto> getDemo2(){
+        String password = "myPassword";
+        System.out.println("Contraseña: " + password);
+
+        var demo = new DemoDto();
+        demo.age = 1;
+        demo.setName("DemoName");
+
+        System.out.println("Demo: "+ demo);
+
+        try {
+            // Intento de código que puede generar una excepción
+            int result = 10 / 0;
+        } catch (Exception e) {
+            System.out.println("Se ha producido una excepción: " + e.getMessage());
+        }
+
+        String userInput = "<script>alert('XSS Attack')</script>";
+        String htmlResponse = "<div>" + userInput + "</div>";
+
+        for (int i = 0; i < 10; i++) {
+            System.out.println("i"+i);
+        }
+
+        return ResponseEntity.ok(demo);
+
+    }
     @GetMapping("/list-numbers-until/{maxNumber}")
     public ResponseEntity<List<String>> getListNumber(@PathVariable Integer maxNumber) {
 
@@ -72,6 +100,37 @@ public class DemoController {
 
         String userInput = "<script>alert('XSS Attack')</script>";
         String htmlResponse = "<div>" + userInput + "</div>";
+
+        return ResponseEntity.ok(numberList);
+
+    }
+
+    public ResponseEntity<List<String>> getListNumber2(@PathVariable Integer maxNumber) {
+
+        log.info("Starting...");
+        long startTime = System.currentTimeMillis();
+        if (maxNumber <= 0) {
+            return ResponseEntity.badRequest().body(null);
+        }
+
+        List<String> numberList = new ArrayList<>();
+
+        for (int i = 1; i <= maxNumber; i++) {
+            numberList.add(String.valueOf(i));
+        }
+        long endTime = System.currentTimeMillis();
+        long overalTime = endTime - startTime;
+        log.info("Basic algorithm (for)");
+        log.info("Execution time: " + overalTime + " ms");
+
+
+        String userInput = "<script>alert('XSS Attack')</script>";
+        String htmlResponse = "<div>" + userInput + "</div>";
+
+        for (int i = 0; i < 10; i++) {
+            System.out.println(overalTime);
+            System.out.println("i"+i);
+        }
 
         return ResponseEntity.ok(numberList);
 
@@ -104,6 +163,37 @@ public class DemoController {
 
     }
 
+    public ResponseEntity<List<String>> getListNumberWithStream2(@PathVariable Integer maxNumber) {
+
+        log.info("Starting...");
+        long startTime = System.currentTimeMillis();
+        if (maxNumber <= 0) {
+            return ResponseEntity.badRequest().body(null);
+        }
+
+        List<String> numberList = IntStream
+                .rangeClosed(1, maxNumber)
+                .mapToObj(String::valueOf)
+                .collect(Collectors.toList());
+
+        long endTime = System.currentTimeMillis();
+        long overalTime = endTime - startTime;
+        log.info("Stream API algorithm (stream)");
+        log.info("Execution time: " + overalTime + " ms");
+
+
+        String userInput = "<script>alert('XSS Attack')</script>";
+        String htmlResponse = "<div>" + userInput + "</div>";
+
+        for (int i = 0; i < 10; i++) {
+            System.out.println(overalTime);
+            System.out.println("i"+i);
+        }
+
+
+        return ResponseEntity.ok(numberList);
+
+    }
     @GetMapping("/concurent/list-numbers-until/{maxNumber}")
     public ResponseEntity<List<String>> getListNumberWithConcurrency(@PathVariable Integer maxNumber) {
         log.info("Starting...");
