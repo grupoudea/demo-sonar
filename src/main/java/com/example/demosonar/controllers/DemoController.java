@@ -270,6 +270,20 @@ public class DemoController {
         return result;
     }
 
+    public void exampleMethod(int x, int y) {
+        if (x > 0) {
+            if (y > 0) {
+                System.out.println("Case 1");
+            } else {
+                System.out.println("Case 2");
+            }
+        } else if (x < 0) {
+            System.out.println("Case 3");
+        } else {
+            System.out.println("Case 4");
+        }
+    }
+
 
 
 }
