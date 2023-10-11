@@ -21,16 +21,30 @@ import java.util.stream.IntStream;
 @RequestMapping("/demo")
 
 public class DemoController {
+    private DemoDto demoDto;
 
     private final Logger log = LoggerFactory.getLogger(DemoController.class);
 
     @GetMapping("/get-demo")
     public ResponseEntity<DemoDto> getDemo(){
+        String password = "myPassword";
+        System.out.println("Contraseña: " + password);
+
         var demo = new DemoDto();
         demo.age = 1;
         demo.setName("DemoName");
 
         System.out.println("Demo: "+ demo);
+
+        try {
+            // Intento de código que puede generar una excepción
+            int result = 10 / 0;
+        } catch (Exception e) {
+            System.out.println("Se ha producido una excepción: " + e.getMessage());
+        }
+
+        String userInput = "<script>alert('XSS Attack')</script>";
+        String htmlResponse = "<div>" + userInput + "</div>";
 
         return ResponseEntity.ok(demo);
 
@@ -55,6 +69,10 @@ public class DemoController {
         log.info("Basic algorithm (for)");
         log.info("Execution time: " + overalTime + " ms");
 
+
+        String userInput = "<script>alert('XSS Attack')</script>";
+        String htmlResponse = "<div>" + userInput + "</div>";
+
         return ResponseEntity.ok(numberList);
 
     }
@@ -77,6 +95,10 @@ public class DemoController {
         long overalTime = endTime - startTime;
         log.info("Stream API algorithm (stream)");
         log.info("Execution time: " + overalTime + " ms");
+
+
+        String userInput = "<script>alert('XSS Attack')</script>";
+        String htmlResponse = "<div>" + userInput + "</div>";
 
         return ResponseEntity.ok(numberList);
 
@@ -113,6 +135,9 @@ public class DemoController {
         int start = 1;
         int end = batchSize;
 
+        String userInput = "<script>alert('XSS Attack')</script>";
+        String htmlResponse = "<div>" + userInput + "</div>";
+
         for (int i = 0; i < threads; i++) {
             final int from = start;
             final int to = i == threads - 1 ? maxNumber : end;
@@ -143,6 +168,10 @@ public class DemoController {
     }
 
     private List<String> generateNumberList(int from, int to) {
+
+
+        String userInput = "<script>alert('XSS Attack')</script>";
+        String htmlResponse = "<div>" + userInput + "</div>";
 
         var result =  IntStream.rangeClosed(from, to)
                 .mapToObj(String::valueOf)
