@@ -5,8 +5,6 @@
 trigger:
 - master
 
-
-
 pool:
   name: MyPool
 
@@ -16,7 +14,7 @@ steps:
   inputs:
     SonarQube: 'SonarQube'
     scannerMode: 'Other'
-    extraProperties: |
+    extraProperties: 
       # Additional properties that will be passed to the scanner,
       # Put one key=value per line, example:
       # sonar.exclusions=**/*.bin
