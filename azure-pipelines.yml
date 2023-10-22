@@ -19,7 +19,6 @@ steps:
       # Put one key=value per line, example:
       # sonar.exclusions=**/*.bin
       sonar.projectKey=com.example:demo-sonar
-      sonar.projectName=demo-sonar
       
 #Publis Quality Gate Result Task
 - task: SonarQubePublish@5
