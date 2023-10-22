@@ -23,7 +23,7 @@ steps:
       sonar.sources=src/main/java/
       sonar.language=java
       sonar.sourceEncoding=UTF-8
-      sonar.scanner.metadataFilePath=$(Build.SourcesDirectory)\target\report-task.txt
+      sonar.scanner.metadataFilePath=$(Build.SourcesDirectory)\target\sonar\report-task.txt
       
 #Publis Quality Gate Result Task
 - task: SonarQubePublish@5
