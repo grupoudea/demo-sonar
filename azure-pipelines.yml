@@ -13,7 +13,7 @@ steps:
 - task: SonarQubePrepare@5
   inputs:
     SonarQube: 'SonarQube'
-    scannerMode: 'Other'
+    scannerMode: 'CLI'
     extraProperties: 
       # Additional properties that will be passed to the scanner,
       # Put one key=value per line, example:
@@ -33,6 +33,8 @@ steps:
     jdkVersionOption: '1.11'
     jdkArchitectureOption: 'x64'
     publishJUnitResults: true
+    sonarQubeRunAnalysis: true
+    sqMavenPluginVersionChoice: pom
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
 
