@@ -1,0 +1,41 @@
+# Build your Java project and run tests with Apache Maven.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+
+trigger:
+- master
+
+pool:
+  name: MyPool
+
+steps:
+  # Prepare Analysis configuration Task
+- task: SonarQubePrepare@5
+  inputs:
+    SonarQube: 'SonarQube'
+    scannerMode: 'Other'
+    extraProperties: | 
+      # Additional properties that will be passed to the scanner,
+      # Put one key=value per line, example:
+      # sonar.exclusions=**/*.bin
+      sonar.projectName=com.example:demo-sonar
+      sonar.projectKey=com.example:demo-sonar
+      sonar.scanner.metadataFilePath=$(Build.SourcesDirectory)\target\sonar\report-task.txt
+      
+#Publis Quality Gate Result Task
+- task: SonarQubePublish@5
+  inputs:
+    pollingTimeoutSec: '300'
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'pom.xml'
+    mavenOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.11'
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: true
+    sonarQubeRunAnalysis: true
+    sqMavenPluginVersionChoice: pom
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    goals: 'package'
+
