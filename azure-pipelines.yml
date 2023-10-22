@@ -13,13 +13,16 @@ steps:
 - task: SonarQubePrepare@5
   inputs:
     SonarQube: 'SonarQube'
-    scannerMode: 'CLI'
-    extraProperties: 
+    scannerMode: 'Other'
+    extraProperties: | 
       # Additional properties that will be passed to the scanner,
       # Put one key=value per line, example:
       # sonar.exclusions=**/*.bin
       sonar.projectName=com.example:demo-sonar
       sonar.projectKey=com.example:demo-sonar
+      sonar.sources=src/main/java/
+      sonar.language=java
+      sonar.sourceEncoding=UTF-8
       
 #Publis Quality Gate Result Task
 - task: SonarQubePublish@5
