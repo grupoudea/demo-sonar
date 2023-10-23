@@ -6,7 +6,7 @@ trigger:
 - master
 
 pool:
-  name: ubuntu-latest
+  vmImage: ubuntu-latest
 
 steps:
 - script: git fetch --unshallow
