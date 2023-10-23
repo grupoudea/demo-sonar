@@ -6,7 +6,7 @@ trigger:
 - master
 
 pool:
-  name: MyPool
+  name: ubuntu-latest
 
 steps:
 - script: git fetch --unshallow
