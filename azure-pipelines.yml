@@ -2,8 +2,11 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
-trigger:
-- master
+
+trigger: none
+
+pr:
+- qa
 
 pool:
   vmImage: ubuntu-latest
@@ -11,8 +14,7 @@ pool:
 steps:
 - script: git fetch --unshallow
   displayName: 'Fetch Complete Git History'
-- script: 'mvn clean install sonar:sonar -Dsonar.host.url=http://34.201.68.45:9000 -Dsonar.login=$(SONAR_TOKEN)'
-  displayName: 'Run SonarQube Analysis'
+
   # Prepare Analysis configuration Task
 - task: SonarQubePrepare@5
   inputs:
