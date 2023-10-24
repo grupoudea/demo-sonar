@@ -6,7 +6,7 @@
 trigger: none
 
 pr:
-- qa
+- master
 
 pool:
   vmImage: ubuntu-latest
