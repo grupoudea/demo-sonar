@@ -27,6 +27,10 @@ steps:
       sonar.projectName=com.example:demo-sonar
       sonar.projectKey=com.example:demo-sonar
       sonar.scanner.metadataFilePath=$(Build.SourcesDirectory)\target\sonar\report-task.txt
+
+#Run analysis
+- script: 'mvn clean install sonar:sonar -Dsonar.host.url=$(SONAR_URL) -Dsonar.login=$(SONAR_TOKEN)'
+  displayName: 'Run SonarQube Analysis'
       
 #Publis Quality Gate Result Task
 - task: SonarQubePublish@5
