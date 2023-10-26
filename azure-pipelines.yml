@@ -45,8 +45,14 @@ steps:
     sqMavenPluginVersionChoice: pom
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '/home/vsts/work/1/s' # or any other source folder where your JAR files are located
+    Contents: '**/*.jar' # include only JAR files
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/JARs'
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '/home/vsts/work/1/s'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/JARs'
     ArtifactName: 'drop'
     publishLocation: 'Container'
