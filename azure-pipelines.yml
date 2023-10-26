@@ -47,13 +47,13 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
 
-- task: CopyFiles@2
+- task: CopyFiles@1
   inputs:
     SourceFolder: '/home/vsts/work/1/s'
     Contents: '/target/*.jar'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)/JARs'
+    TargetFolder: '/home/vsts/work/1/JARs'
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)/JARs'
+    PathtoPublish: '/home/vsts/work/1/JARs'
     ArtifactName: 'drop'
     publishLocation: 'Container'
