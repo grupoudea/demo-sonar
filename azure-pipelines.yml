@@ -42,14 +42,15 @@ steps:
     jdkVersionOption: '1.11'
     jdkArchitectureOption: 'x64'
     publishJUnitResults: true
+    sonarQubeRunAnalysis: true
     sqMavenPluginVersionChoice: pom
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '/home/vsts/work/1/s' # or any other source folder where your JAR files are located
-    Contents: '**/*.jar' # include only JAR files
+    SourceFolder: '/home/vsts/work/1/s'
+    Contents: '/target/*.jar'
     TargetFolder: '$(Build.ArtifactStagingDirectory)/JARs'
 - task: PublishBuildArtifacts@1
   inputs:
