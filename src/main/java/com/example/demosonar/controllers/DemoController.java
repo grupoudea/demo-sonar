@@ -31,20 +31,20 @@ public class DemoController {
         System.out.println("Contraseña: " + password);
 
         var demo = new DemoDto();
-        demo.age = 1;
-        demo.setName("DemoName");
+        demo.version = 2;
+        demo.setName("Proyecto Integrador");
 
         System.out.println("Demo: "+ demo);
 
-        try {
-            // Intento de código que puede generar una excepción
-            int result = 10 / 0;
-        } catch (Exception e) {
-            System.out.println("Se ha producido una excepción: " + e.getMessage());
-        }
-
-        String userInput = "<script>alert('XSS Attack')</script>";
-        String htmlResponse = "<div>" + userInput + "</div>";
+//        try {
+//            // Intento de código que puede generar una excepción
+//            int result = 10 / 0;
+//        } catch (Exception e) {
+//            System.out.println("Se ha producido una excepción: " + e.getMessage());
+//        }
+//
+//        String userInput = "<script>alert('XSS Attack')</script>";
+//        String htmlResponse = "<div>" + userInput + "</div>";
 
         return ResponseEntity.ok(demo);
 
@@ -56,7 +56,7 @@ public class DemoController {
         System.out.println("Contraseña: " + password);
 
         var demo = new DemoDto();
-        demo.age = 1;
+        demo.version = 1;
         demo.setName("DemoName");
 
         System.out.println("Demo: "+ demo);

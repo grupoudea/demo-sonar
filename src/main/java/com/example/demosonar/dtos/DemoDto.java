@@ -2,19 +2,19 @@ package com.example.demosonar.dtos;
 
 public class DemoDto {
 
-    public int age;
+    public int version;
     private String name;
 
     public DemoDto(){
 
     }
 
-    public int getAge() {
-        return age;
+    public int getVersion() {
+        return version;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setVersion(int version) {
+        this.version = version;
     }
 
     public String getName() {
