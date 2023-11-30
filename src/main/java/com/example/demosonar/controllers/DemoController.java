@@ -31,8 +31,8 @@ public class DemoController {
         System.out.println("Contraseña: " + password);
 
         var demo = new DemoDto();
-        demo.version = 2;
-        demo.setName("Proyecto Integrador Prueba");
+        demo.version = 3;
+        demo.setName("Proyecto Integrador II");
 
         System.out.println("Demo: "+ demo);
 
