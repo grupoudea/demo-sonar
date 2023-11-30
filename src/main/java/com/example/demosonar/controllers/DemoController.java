@@ -32,7 +32,7 @@ public class DemoController {
 
         var demo = new DemoDto();
         demo.version = 2;
-        demo.setName("Proyecto Integrador");
+        demo.setName("Proyecto Integrador Prueba");
 
         System.out.println("Demo: "+ demo);
 
